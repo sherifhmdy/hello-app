@@ -20,7 +20,7 @@ jobs:
           keys:
             - mysavedoutput
       - run:
-        command: cat ~/file.txt
+          command: cat ~/file.txt
 
 workflows:
   workflow-X:
