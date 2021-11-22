@@ -4,6 +4,7 @@ jobs:
   run-aws:
     docker:
       - image: amazon/aws-cli
+      - image: cimg/go:1.16
     steps:
       - run:
           command: aws help > ~/file.txt
