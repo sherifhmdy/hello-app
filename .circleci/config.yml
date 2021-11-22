@@ -14,18 +14,16 @@ jobs:
 
   configure_instance:
     docker: 
-      - image: cimg/python:3.10.0
+      - image: python:3.7-alpine3.11
     steps:
       - checkout
       - add_ssh_keys:
           ec2: ["1a:2e:1f:f6:4d:41:a3:97:df:dd:4c:6f:cd:f5:2b:40"]
-      - run:
-          command: sudo apt-get update
       - run: 
           command: |
-            sudo apt-get install ansible
-      - run:
-          command: ansible --version
+            apk add --update ansible
+      - run: 
+          command: ls -ltr
       - run:
           command: |
             ansible-playbook playbook.yaml
