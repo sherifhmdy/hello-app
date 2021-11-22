@@ -21,7 +21,7 @@ jobs:
           ec2: ["1a:2e:1f:f6:4d:41:a3:97:df:dd:4c:6f:cd:f5:2b:40"]
       - run: 
           command: |
-            sudo pip3 install ansible
+            sudo pip install ansible
       - run:
           command: |
             ansible-playbook web playbook.yaml
