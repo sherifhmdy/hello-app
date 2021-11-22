@@ -3,7 +3,7 @@
 - name: update packages
   become: yes
   apt:
-    upgrade_cache: yes
+    update_cache: yes
 
 - name: install apache2
   become: yes
