@@ -24,7 +24,13 @@ jobs:
             apk add --update ansible
       - run:
           command: |
-            apk add --update awscli
+            apk add --no-cache \
+            python3 \
+            py3-pip \
+            && pip3 install --upgrade pip \
+            && pip3 install --no-cache-dir \
+            awscli \
+            && rm -rf /var/cache/apk/*
       - run:
           command: |
             aws ec2 describe-instances \
