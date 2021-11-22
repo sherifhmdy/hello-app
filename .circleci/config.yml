@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   run-aws:
     docker:
-      - image: circleci/aws-cli
+      - image: amazon/aws-cli
     steps:
       - run:
           command: aws ls
