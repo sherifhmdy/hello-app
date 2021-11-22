@@ -6,7 +6,7 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - run:
-          command: aws ls
+          command: aws s3 ls
 
 workflows:
   workflow-X:
