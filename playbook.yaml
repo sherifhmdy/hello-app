@@ -2,6 +2,7 @@
 
 - name: configure instance play
   hosts: web
+  remote_user: ubuntu
   gather_facts: no
 
   roles:
