@@ -12,8 +12,19 @@ jobs:
             --stack-name my-stack \
             --template-file instance.yaml \
 
+  instance_delete:
+    docker:
+      - image: amazon/aws-cli
+    steps:
+      - checkout
+      - run:
+          command: aws cloudformation delete-stack --stack-name my-stack
+
 
 workflows:
   starting-up-instance:
     jobs:
       - instance_creation
+      - instance_delete:
+          requires:
+            - instance_creation
