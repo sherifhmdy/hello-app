@@ -6,7 +6,21 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - run:
-          command: aws s3 ls
+          command: aws help > file.txt
+      - save_cache:
+        key: mysavedoutput
+        - path:
+          - ~/file.txt
+
+  test-caching:
+    docker:
+      - image: amazon/aws-cli
+    steps:
+      - restore_cache:
+        keys:
+          - mysavedoutput
+      - run:
+        command: cat ~/file.txt
 
 workflows:
   workflow-X:
