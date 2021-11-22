@@ -22,6 +22,16 @@ jobs:
       - run: 
           command: |
             apk add --update ansible
+      - run:
+          command: |
+            apk add --update aws-cli
+      - run:
+          command: |
+            aws ec2 describe-instances \
+            --query 'Reservations[*].Instances[*].PublicIpAddress' \
+            --output text >> inventory
+      - run:
+          command: more inventory
       - run: 
           command: ls -ltr
       - run:
