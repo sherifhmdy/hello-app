@@ -10,10 +10,10 @@ jobs:
           command: |
             aws cloudformation deploy \
             --stack-name my-stack \
-            --template-body instance.yaml \
+            --template-file instance.yaml \
 
 
 workflows:
-  workflow-X:
+  starting-up-instance:
     jobs:
       - instance_creation
