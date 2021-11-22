@@ -8,17 +8,17 @@ jobs:
       - run:
           command: aws help > ~/file.txt
       - save_cache:
-          key: mysavedoutput
+          key: mysavedoutput1
           paths:
             - ~/file.txt
 
   test-caching:
     docker:
-      - image: amazon/aws-cli
+      - image: cimg/go:1.16
     steps:
       - restore_cache:
           keys:
-            - mysavedoutput
+            - mysavedoutput1
       - run:
           command: cat ~/file.txt
 
