@@ -1,31 +1,19 @@
 version: 2.1
 
 jobs:
-  run-aws:
+  instance_creation:
     docker:
       - image: amazon/aws-cli
-      - image: cimg/go:1.16
     steps:
+      - checkout
       - run:
-          command: aws help > ~/file.txt
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - file.txt
+          command: |
+            aws cloudformation deploy \
+            --stack-name my-stack \
+            --template-body instance.yaml \
 
-  test-caching:
-    docker:
-      - image: cimg/go:1.16
-    steps:
-      - attach_workspace:
-          at: ~/
-      - run:
-          command: cat ~/file.txt
 
 workflows:
   workflow-X:
     jobs:
-      - run-aws
-      - test-caching:
-          requires:
-            - run-aws
+      - instance_creation
