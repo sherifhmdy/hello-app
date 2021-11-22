@@ -1,14 +1,14 @@
 version: 2.1
 
 jobs:
-  say-hello:
+  run-aws:
     docker:
-      - image: cimg/base:2021.04
+      - image: circleci/aws-cli
     steps:
       - run:
-          command: echo "Hello World!"
+          command: aws ls
 
 workflows:
   workflow-X:
     jobs:
-      - say-hello
+      - run-aws
