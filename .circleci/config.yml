@@ -39,11 +39,30 @@ jobs:
             --output text >> inventory
       - run:
           command: more inventory
+      - persist_to_workspace:
+          root: /tmp
+          paths:
+            - ~/inventory
       - run: 
           command: ls -ltr
       - run:
           command: |
             ansible-playbook playbook.yaml
+
+  smoke_test:
+    docker:
+      - image: alpine:latest
+    steps:
+      - attach_workspace:
+          at: /tmp
+      - run:
+          command: |
+            if curl -s --head "https://${}/"
+            then
+              echo "worked"
+            else
+              echo "failed"
+            fi
 
   instance_delete:
     docker:
@@ -61,7 +80,7 @@ workflows:
       - configure_instance:
           requires:
             - instance_creation
-      - instance_delete:
+      - smoke_test:
           requires:
             - instance_creation
             - configure_instance
