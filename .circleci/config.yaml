@@ -1,0 +1,16 @@
+version: 2.1
+
+jobs:
+  test:
+    docker:
+      - image: circleci:node:13.8.0
+    branches:
+      only:
+        - test
+    steps:
+      - run: echo "Hello world"
+
+workflows:
+  welcome:
+    jobs:
+      - test
