@@ -24,7 +24,7 @@ jobs:
             apk add --update ansible
       - run:
           command: |
-            apk add --update aws-cli
+            apk add --update awscli
       - run:
           command: |
             aws ec2 describe-instances \
