@@ -1,0 +1,22 @@
+---
+
+- name: get instance public ip
+  shell: |
+    aws ec2 describe-instances \
+    --query 'Reservations[*].Instances[*].PublicIpAddress' \
+    --output text >> inventory
+  delegate_to: localhost
+
+- name: update packages
+  apt:
+    upgrade_cache: yes
+
+- name: install apache2
+  apt:
+    name: ["apache2"]
+    state: latest
+
+- name: copying files to apache
+  copy:
+    src: index.html
+    dest: /var/www/html/index.html

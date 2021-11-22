@@ -12,6 +12,20 @@ jobs:
             --stack-name my-stack \
             --template-file instance.yaml \
 
+  configure_instance:
+    docker: 
+      - image: 
+    steps:
+      - checkout
+      - add_ssh_keys:
+          ec2: ["1a:2e:1f:f6:4d:41:a3:97:df:dd:4c:6f:cd:f5:2b:40"]
+      - run: 
+          command: |
+            sudo apt-get install ansible
+      - run:
+          command: |
+            ansible-playbook web playbook.yaml
+
   instance_delete:
     docker:
       - image: amazon/aws-cli
@@ -25,6 +39,6 @@ workflows:
   starting-up-instance:
     jobs:
       - instance_creation
-      - instance_delete:
+      - configure_instance:
           requires:
             - instance_creation

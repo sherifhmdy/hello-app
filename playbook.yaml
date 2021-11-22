@@ -1,0 +1,10 @@
+---
+
+- name: configure instance play
+  hosts: web
+  gather_facts: no
+
+  roles:
+    - configure_instance
+
+    
