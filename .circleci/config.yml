@@ -9,7 +9,7 @@ jobs:
           command: aws help > file.txt
       - save_cache:
           key: mysavedoutput
-          - path:
+          paths:
             - ~/file.txt
 
   test-caching:
