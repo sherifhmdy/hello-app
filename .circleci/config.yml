@@ -14,14 +14,14 @@ jobs:
 
   configure_instance:
     docker: 
-      - image: 
+      - image: cimg/python:3.10.0
     steps:
       - checkout
       - add_ssh_keys:
           ec2: ["1a:2e:1f:f6:4d:41:a3:97:df:dd:4c:6f:cd:f5:2b:40"]
       - run: 
           command: |
-            sudo apt-get install ansible
+            sudo pip3 install ansible
       - run:
           command: |
             ansible-playbook web playbook.yaml
