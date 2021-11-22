@@ -61,3 +61,7 @@ workflows:
       - configure_instance:
           requires:
             - instance_creation
+      - instance_delete:
+          requires:
+            - instance_creation
+            - configure_instace
