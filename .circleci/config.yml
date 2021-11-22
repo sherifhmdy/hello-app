@@ -6,7 +6,7 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - run:
-          command: aws help > file.txt
+          command: aws help > ~/file.txt
       - save_cache:
           key: mysavedoutput
           paths:
