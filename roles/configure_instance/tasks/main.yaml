@@ -5,7 +5,7 @@
     aws ec2 describe-instances \
     --query 'Reservations[*].Instances[*].PublicIpAddress' \
     --output text >> inventory
-  delegate_to: localhost
+  delegate_to: 127.0.0.1
 
 - name: update packages
   become: yes
