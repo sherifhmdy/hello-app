@@ -8,17 +8,17 @@ jobs:
       - run:
           command: aws help > file.txt
       - save_cache:
-        key: mysavedoutput
-        - path:
-          - ~/file.txt
+          key: mysavedoutput
+          - path:
+            - ~/file.txt
 
   test-caching:
     docker:
       - image: amazon/aws-cli
     steps:
       - restore_cache:
-        keys:
-          - mysavedoutput
+          keys:
+            - mysavedoutput
       - run:
         command: cat ~/file.txt
 
@@ -26,3 +26,6 @@ workflows:
   workflow-X:
     jobs:
       - run-aws
+      - test-caching:
+          requires:
+            - run-aws
