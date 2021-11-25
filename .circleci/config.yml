@@ -1,5 +1,13 @@
 version: 2.1
 
+commands:
+  destroy_environment:
+    steps:
+      - run:
+          command: |
+            aws cloudformation delete-stack --stack-name my-stack
+
+
 jobs:
   instance_creation:
     docker:
@@ -62,6 +70,8 @@ jobs:
             else 
               return 1
             fi
+      - destroy_environment:
+          when: on_fail
 
   instance_delete:
     docker:
