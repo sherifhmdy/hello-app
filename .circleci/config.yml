@@ -55,7 +55,7 @@ jobs:
       - run: apk add --update curl
       - run: 
           command: |
-            url="http://google:2000.com"
+            url="http://google.com"
             if curl -s ${url}
             then 
               return 0
