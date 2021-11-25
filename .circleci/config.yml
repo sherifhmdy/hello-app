@@ -57,8 +57,10 @@ jobs:
           command: |
             url="http://google:2000.com"
             if curl -s ${url}
-            then echo worked
-            else echo failed
+            then 
+              return 0
+            else 
+              return 1
             fi
 
   instance_delete:
