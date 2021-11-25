@@ -45,7 +45,7 @@ jobs:
       - persist_to_workspace:
           root: /tmp
           paths:
-            - ~/inventory
+            - ~/*
       - run: 
           command: ls -ltr
       - run:
