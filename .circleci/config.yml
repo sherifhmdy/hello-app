@@ -76,4 +76,8 @@ workflows:
       - instance_creation
       - configure_instance:
           requires:
-            - instance_creation
+            - instance_creatio
+      - smoke_test:
+          requires:
+            - instance_creatio
+            - configure_instance
