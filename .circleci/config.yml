@@ -33,6 +33,9 @@ jobs:
             && rm -rf /var/cache/apk/*
       - run:
           command: |
+            echo '[all]' > inventory
+      - run:
+          command: |
             aws ec2 describe-instances \
             --query 'Reservations[*].Instances[*].PublicIpAddress' \
             --region us-east-1 \
