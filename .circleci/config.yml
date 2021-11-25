@@ -42,10 +42,6 @@ jobs:
             --output text >> inventory
       - run:
           command: more inventory
-      - persist_to_workspace:
-          root: /tmp
-          paths:
-            - ~/*
       - run: 
           command: ls -ltr
       - run:
