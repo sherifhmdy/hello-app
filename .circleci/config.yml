@@ -33,7 +33,7 @@ jobs:
             && rm -rf /var/cache/apk/*
       - run:
           command: |
-            echo '[all]' > inventory
+            echo '[all]' > ~/inventory
       - run:
           command: |
             aws ec2 describe-instances \
