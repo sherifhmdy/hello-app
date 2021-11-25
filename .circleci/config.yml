@@ -56,7 +56,7 @@ jobs:
       - run: 
           command: |
             url="http://google.com"
-            if ${url}
+            if curl -s ${url}
             then echo worked
             else echo failed
             fi
