@@ -48,6 +48,19 @@ jobs:
           command: |
             ansible-playbook playbook.yaml
 
+  smoke_test:
+    docker:
+      - image: alpine:latest
+    steps:
+      - run: apk add --update curl
+      - run: 
+          command: |
+            url="http://google.com"
+            if ${url}
+            then echo worked
+            else echo failed
+            fi
+
   instance_delete:
     docker:
       - image: amazon/aws-cli
