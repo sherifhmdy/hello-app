@@ -70,8 +70,10 @@ jobs:
             else 
               return 1
             fi
-      - destroy_environment
-        when: on_fail
+      - when:
+          condition: on_fail
+          steps:
+            - destroy_environment
 
   instance_delete:
     docker:
