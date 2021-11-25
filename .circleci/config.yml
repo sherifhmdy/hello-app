@@ -5,6 +5,9 @@ commands:
     steps:
       - run:
           command: |
+            apk add --update awscli
+      - run:
+          command: |
             aws cloudformation delete-stack --stack-name my-stack
 
 
