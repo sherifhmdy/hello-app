@@ -49,21 +49,6 @@ jobs:
           command: |
             ansible-playbook playbook.yaml
 
-  smoke_test:
-    docker:
-      - image: alpine:latest
-    steps:
-      - attach_workspace:
-          at: /tmp
-      - run:
-          command: |
-            if curl -s --head "https://${}/"
-            then
-              echo "worked"
-            else
-              echo "failed"
-            fi
-
   instance_delete:
     docker:
       - image: amazon/aws-cli
