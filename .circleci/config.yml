@@ -14,7 +14,7 @@ commands:
             && rm -rf /var/cache/apk/*
       - run:
           command: |
-            aws cloudformation delete-stack --stack-name my-stack --gerion us-east-1
+            aws cloudformation delete-stack --stack-name my-stack --region us-east-1
 
 
 jobs:
