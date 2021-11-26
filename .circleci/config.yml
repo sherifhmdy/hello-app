@@ -16,7 +16,7 @@ commands:
       - run:
           when: on_fail
           command: |
-            aws cloudformation delete-stack --stack-name my-stack --region us-east-1
+            aws cloudformation delete-stack --stack-name my-stack-${CIRCLE-WORKFLOW-ID} --region us-east-1
 
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
       - run:
           command: |
             aws cloudformation deploy \
-            --stack-name my-stack \
+            --stack-name my-stack-${CIRCLE-WORKFLOW-ID} \
             --template-file instance.yaml \
 
   configure_instance:
