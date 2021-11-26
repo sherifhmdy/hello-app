@@ -16,7 +16,7 @@ commands:
       - run:
           when: on_fail
           command: |
-            aws cloudformation delete-stack --stack-name my-stack-${CIRCLE-WORKFLOW-ID} --region us-east-1
+            aws cloudformation delete-stack --stack-name my-stack-${CIRCLE_WORKFLOW_ID} --region us-east-1
 
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
       - run:
           command: |
             aws cloudformation deploy \
-            --stack-name my-stack-${CIRCLE-WORKFLOW-ID} \
+            --stack-name my-stack-${CIRCLE_WORKFLOW_ID} \
             --template-file instance.yaml \
 
   configure_instance:
@@ -82,14 +82,6 @@ jobs:
               return 1
             fi
       - destroy_environment
-
-  instance_delete:
-    docker:
-      - image: amazon/aws-cli
-    steps:
-      - checkout
-      - run:
-          command: aws cloudformation delete-stack --stack-name my-stack
 
 
 workflows:
